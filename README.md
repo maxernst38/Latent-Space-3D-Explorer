@@ -4,9 +4,8 @@ Latent Space Explorer is a tool for visualizing and interacting with latent spac
 
 ## Features
 
-- Visualize latent spaces in 2D/3D
+- Visualize latent spaces in 3D
 - Interactively explore data points and clusters
-- Support for common ML model formats
 
 ## Installation
 
@@ -17,6 +16,8 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+
+Place datasets in datasets/ folder to see them in the UI.
 
 ```bash
 streamlit run app.py
