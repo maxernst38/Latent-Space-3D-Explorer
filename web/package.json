@@ -1,0 +1,23 @@
+{
+  "name": "latent-explorer-viewer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Browser viewer for latent-explorer bundles. Built into src/latent_explorer/viewer/ by `npm run build`.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.0.5",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.1"
+  }
+}

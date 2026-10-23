@@ -1,0 +1,39 @@
+[project]
+name = "latent-explorer"
+version = "0.1.0"
+description = "Encode image datasets with CLIP, project them to 3D, and explore the result in the browser."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Max Ernst" }]
+
+# PyTorch publishes no wheels for 3.14 yet, and open_clip needs >=3.10.
+requires-python = ">=3.10,<3.14"
+
+dependencies = [
+    "torch>=2.2",
+    "open_clip_torch>=2.24",
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+    "scipy>=1.12",
+    "pillow>=10.2",
+    "pyyaml>=6.0",
+    "tqdm>=4.66",
+]
+
+[project.scripts]
+latent-explorer = "latent_explorer.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Picks up src/latent_explorer/viewer/ too — the viewer is built there by
+# `npm run build` in web/ and committed, so `pip install` works without Node.
+[tool.hatch.build.targets.wheel]
+packages = ["src/latent_explorer"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]

@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* The viewer's design tokens, declared once here. Viewer.jsx and main.jsx
+   reference them by name (text-ink, border-hairline, rounded-card …) rather
+   than reaching for raw Tailwind colours, so retuning the palette is an edit
+   to this block and nothing else.
+
+   There are two surfaces, and the distinction is load-bearing: the app chrome
+   is a light blue, and the 3D canvas is a dark grey so the point cloud reads
+   against it. Anything drawn *over* the canvas — the stats panel, hover card,
+   centroid labels, camera buttons — uses the `canvas-*` tokens, not the light
+   ones, or it turns into light-on-light and disappears. */
+@theme {
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --color-brand-50:  #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+
+  /* App chrome. The light blue is the chrome itself — header, sidebar, strips —
+     rather than a page colour hidden behind white panels, which at this layout
+     would never be visible. White is kept for form controls, so an input still
+     reads as something you can type into. */
+  --color-ink:             #0f172a;
+  --color-body:            #44536b;
+  --color-muted:           #64748b;
+  --color-hairline:        #cfdcec;
+  --color-hairline-strong: #b1c4db;
+  --color-surface:         #e8f0fa; /* header, sidebar, eigen strip */
+  --color-surface-subtle:  #d9e6f4; /* hover tint within the chrome */
+  --color-field:           #ffffff; /* inputs, selects, unpressed buttons */
+
+  /* The 3D canvas. --color-canvas must stay in step with BACKGROUND in
+     scene.js, which three.js needs as a hex number rather than a CSS var. */
+  --color-canvas:          #3a3f49;
+  --color-canvas-ink:      #eef2f7;
+  --color-canvas-muted:    #aab4c4;
+  --color-canvas-panel:    rgb(24 28 35 / 0.74);
+  --color-canvas-hairline: rgb(255 255 255 / 0.14);
+
+  --radius-card:  10px;
+  --radius-input: 8px;
+  --radius-pill:  9999px;
+
+  --shadow-card:       0 1px 2px 0 rgb(15 23 42 / 0.04);
+  --shadow-card-hover: 0 10px 30px -14px rgb(15 23 42 / 0.22);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2 {
+    color: var(--color-ink);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
